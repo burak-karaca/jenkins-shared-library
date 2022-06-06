@@ -1,11 +1,6 @@
 #!/usr/bin/env groovy
 
 def call(){
-    echo "building the docker image..."
-    withCredentials([usernamePassword(credentialsId: 'dockerhub-repo', passwordVariable: 'PASS', usernameVariable: 'USER')]){
-        sh 'docker build -t java-maven-app:jma-1.0 .'
-        sh 'docker tag java-maven-app:jma-1.0 burakaraca/java-maven-app:jma-1.0'
-        sh "echo $PASS | docker login -u ${USER} --password-stdin"
-        sh 'docker push burakaraca/java-maven-app:jma-1.0'
-    }
+    echo "building the application..."
+    sh 'mvn package'
 }
