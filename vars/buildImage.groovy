@@ -1,6 +1,7 @@
 #!/usr/bin/env groovy
 
-import com.Docker
+import com.example.Docker
+
 def call(String imageName) {
     return new Docker(this).buildDockerImage(imageName)
 
